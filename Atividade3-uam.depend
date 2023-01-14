@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1673664363 source:c:\users\thiag\documents\projetos\atividade3-uam\atividade3-uam\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
