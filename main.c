@@ -22,7 +22,6 @@ typedef struct cliente cliente;
 cliente lista[TAM];
 
 void menu(){
-    system("cls");
     printf("\n-----------------------------CADASTRO DE CLIENTES-------------------------------");
     printf("\n[ 1 ] - Incluir um novo cliente ");
     printf("\n[ 2 ] - Remover cliente");
@@ -36,6 +35,7 @@ void menu(){
 }
 
 void incluirCliente(){
+    system("cls");
     FILE *arq;
     arq = fopen("C:\\Users\\thiag\\Desktop\\TesteArquivo\\Cliente\\cliente.txt","w");
 
@@ -70,6 +70,12 @@ void incluirCliente(){
     }
 }
 
+void listarClientes(){
+    for(i = 0; i < TAM;i++){
+        printf("Nome: %s - Ano Nascimendo: %d - Montante R$%.2f\n", lista[i].nome, lista[i].anoNascimento, lista[i].montante);
+    }
+}
+
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
@@ -80,6 +86,18 @@ int main()
         switch(opcao){
             case 1:
                 incluirCliente();
+            break;
+            case 2:
+
+            break;
+            case 3:
+
+            break;
+            case 4:
+
+            break;
+            case 5:
+                listarClientes();
             break;
     }
     }while(opcao != 7);
