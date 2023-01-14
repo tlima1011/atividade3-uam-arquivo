@@ -68,12 +68,22 @@ void incluirCliente(){
         }
         i++;
     }
+    fclose(arq);
 }
 
 void listarClientes(){
+    FILE *arq;
+    arq = fopen("C:\\Users\\thiag\\Desktop\\TesteArquivo\\Cliente\\cliente.txt","r");
+
+    if(arq ==NULL){
+        printf("Falha na abertura de arquivo.\n");
+        return 0;
+    }
     for(i = 0; i < TAM;i++){
         printf("Nome: %s - Ano Nascimendo: %d - Montante R$%.2f\n", lista[i].nome, lista[i].anoNascimento, lista[i].montante);
     }
+
+    fclose(arq);
 }
 
 int main()
