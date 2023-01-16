@@ -9,7 +9,7 @@ void limpar_entrada() {
     while ((c = getchar()) != '\n' && c != EOF) {}
 }
 
-int opcao = 0, i = 0, tamanhobuffer, quantidade = 0;
+int opcao = 0, i = 0, tamanhobuffer;
 
 struct cliente{
     char nome[50];
@@ -72,7 +72,7 @@ void incluirCliente(){
 void listarClientes(){
     //struct cliente cli1;
     tamanhobuffer = sizeof(cli);
-    int tamanho = i;
+    //int tamanho = i;
     //FILE *arq;
     arq = fopen("C:\\Users\\thiag\\Desktop\\TesteArquivo\\Cliente\\cliente.txt","rb");
 
@@ -81,11 +81,11 @@ void listarClientes(){
         return 0;
     }
 
-    for(i = 0; i < tamanho;i++){
+    for(i = 0; i < 5; i++){
         //printf("Nome: %s - Ano Nascimendo: %d - Montante R$%.2f\n", lista[i].nome, lista[i].anoNascimento, lista[i].montante);
         fseek(arq,i* tamanhobuffer,SEEK_SET);
         fread(&cli,sizeof(cli),1,arq);
-        printf("\n\tNome: %s - Ano Nascimento: %d - Montante R$%.2f",cli.nome, cli.anoNascimento, cli.montante);
+        printf("\n\tNome: %s - \tAno Nascimento: %d - \tMontante R$%.2f",cli.nome, cli.anoNascimento, cli.montante);
     }
     fclose(arq);
 }
