@@ -9,7 +9,7 @@ void limpar_entrada() {
     while ((c = getchar()) != '\n' && c != EOF) {}
 }
 
-int opcao = 0, i = 0, tamanhobuffer;
+int opcao = 0, i = 0, tamanhobuffer, quantidade = 0;
 
 struct cliente{
     char nome[50];
@@ -51,7 +51,7 @@ void incluirCliente(){
         printf("Ano Nascimento: ");
         scanf("%d", &cli.anoNascimento);
         printf("Montante em R$");
-        scanf("%.2f", &cli.montante);
+        scanf("%f", &cli.montante);
         //fscanf(arq,"%s;%d;%f", &lista[i].nome, &lista[i].anoNascimento,&lista[i].montante);
         fwrite(&cli, sizeof(struct cliente),1,arq);
         limpar_entrada();
@@ -69,7 +69,7 @@ void incluirCliente(){
     fclose(arq);
 }
 
-void listarClientes(*cliente){
+void listarClientes(){
     //struct cliente cli1;
     tamanhobuffer = sizeof(cli);
 
@@ -84,10 +84,9 @@ void listarClientes(*cliente){
     for(i = 0; i < TAM;i++){
         //printf("Nome: %s - Ano Nascimendo: %d - Montante R$%.2f\n", lista[i].nome, lista[i].anoNascimento, lista[i].montante);
         fseek(arq,i*tamanhobuffer,SEEK_SET);
-        fread(&cli1,sizeof(cliente),1,arq);
-        printf("\n\tNome: %s - Ano Nascimento: %d - Montante %.2f",cli.nome, cli.anoNascimento, cli.montante);
+        fread(&cli,sizeof(cli),1,arq);
+        printf("\n\tNome: %s - Ano Nascimento: %d - Montante R$%.2f",cli.nome, cli.anoNascimento, cli.montante);
     }
-
     fclose(arq);
 }
 
@@ -112,7 +111,7 @@ int main()
 
             break;
             case 5:
-                listarClientes(&cliente);
+                listarClientes();
             break;
     }
     }while(opcao != 7);
