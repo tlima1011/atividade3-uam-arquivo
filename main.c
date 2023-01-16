@@ -17,6 +17,7 @@ struct cliente{
     float montante;
 };
 
+FILE *arq;
 struct cliente cli;
 
 void menu(){
@@ -34,7 +35,6 @@ void menu(){
 
 void incluirCliente(){
     system("cls");
-    FILE *arq;
     arq = fopen("C:\\Users\\thiag\\Desktop\\TesteArquivo\\Cliente\\cliente.txt","wb+");
 
     if(arq ==NULL){
@@ -42,9 +42,9 @@ void incluirCliente(){
         return 0;
     }
     //int i = 0;
-    char cont;
+    char cont = 'n';
 
-    while(i < TAM){
+    while(cont != 'n' || cont != 'N'){
         printf("Dados do %d cliente: \n", i + 1);
         printf("Nome: ");
         scanf("%s", cli.nome);
@@ -57,6 +57,7 @@ void incluirCliente(){
         limpar_entrada();
         printf("Deseja incluir mais um cliente [s][n]");
         scanf("%c",&cont);
+        i++;
         if(cont =='n' || cont == 'N'){
             break;
         }
@@ -64,7 +65,6 @@ void incluirCliente(){
             printf("Todos clientes ocupados não permitido adicao de mais");
             break;
         }
-        i++;
     }
     fclose(arq);
 }
@@ -72,18 +72,18 @@ void incluirCliente(){
 void listarClientes(){
     //struct cliente cli1;
     tamanhobuffer = sizeof(cli);
+    int tamanho = i;
+    //FILE *arq;
+    arq = fopen("C:\\Users\\thiag\\Desktop\\TesteArquivo\\Cliente\\cliente.txt","rb");
 
-    FILE *arq;
-    arq = fopen("C:\\Users\\thiag\\Desktop\\TesteArquivo\\Cliente\\cliente.txt","r");
-
-    if(arq ==NULL){
+    if(arq == NULL){
         printf("Falha na abertura de arquivo.\n");
         return 0;
     }
 
-    for(i = 0; i < TAM;i++){
+    for(i = 0; i < tamanho;i++){
         //printf("Nome: %s - Ano Nascimendo: %d - Montante R$%.2f\n", lista[i].nome, lista[i].anoNascimento, lista[i].montante);
-        fseek(arq,i*tamanhobuffer,SEEK_SET);
+        fseek(arq,i* tamanhobuffer,SEEK_SET);
         fread(&cli,sizeof(cli),1,arq);
         printf("\n\tNome: %s - Ano Nascimento: %d - Montante R$%.2f",cli.nome, cli.anoNascimento, cli.montante);
     }
