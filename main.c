@@ -80,13 +80,19 @@ void listarClientes(){
         printf("Falha na abertura de arquivo.\n");
         return 0;
     }
-
-    for(i = 0; i < 5; i++){
+    //i = 0; i < 5; i++
+    //for(){
         //printf("Nome: %s - Ano Nascimendo: %d - Montante R$%.2f\n", lista[i].nome, lista[i].anoNascimento, lista[i].montante);
+
+    //}
+    i = 0;
+    while(!feof(arq)){
         fseek(arq,i* tamanhobuffer,SEEK_SET);
         fread(&cli,sizeof(cli),1,arq);
         printf("\n\tNome: %s - \tAno Nascimento: %d - \tMontante R$%.2f",cli.nome, cli.anoNascimento, cli.montante);
+        i++;
     }
+
     fclose(arq);
 }
 
